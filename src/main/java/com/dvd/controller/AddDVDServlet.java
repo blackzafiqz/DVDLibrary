@@ -91,7 +91,7 @@ public class AddDVDServlet extends HttpServlet {
                 errorMsgs.add("Please enter a valid year.");
             if (!errorMsgs.isEmpty()) {
                 request.setAttribute("errorMsgs", errorMsgs);
-                RequestDispatcher view = request.getRequestDispatcher("/error.view");
+                RequestDispatcher view = request.getRequestDispatcher("/add_dvd.view");
                 view.forward(request, response);
                 return;
             }

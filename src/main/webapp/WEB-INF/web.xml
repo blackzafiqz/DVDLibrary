@@ -16,13 +16,9 @@
         <servlet-name>SuccessServlet</servlet-name>
         <servlet-class>com.dvd.controller.SuccessServlet</servlet-class>
     </servlet>
-    <servlet>
-        <servlet-name>ErrorPageServlet</servlet-name>
-        <servlet-class>com.dvd.controller.ErrorPageServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
         <servlet-name>DVDFormServlet</servlet-name>
-        <url-pattern>/add_dvd</url-pattern>
+        <url-pattern>/add_dvd.view</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>ListLibraryServlet</servlet-name>
@@ -35,10 +31,6 @@
     <servlet-mapping>
         <servlet-name>SuccessServlet</servlet-name>
         <url-pattern>/success.view</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>ErrorPageServlet</servlet-name>
-        <url-pattern>/error.view</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

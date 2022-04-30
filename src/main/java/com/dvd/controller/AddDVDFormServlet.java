@@ -10,6 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  *
@@ -48,9 +50,9 @@ public class AddDVDFormServlet extends HttpServlet {
                                     Genre : <select name="genre">
                                         """);
 
-            for (String i : genres) {
+            for (String i : genres) 
                 out.println(String.format("<option value='%s'>%s</option>", i, i));
-            }
+            
             out.println("""
                                     </select>
                                     or new genre: <input type="text" name="newGenre"/>
@@ -91,7 +93,28 @@ public class AddDVDFormServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        var errorMsgs = (ArrayList) request.getAttribute("errorMsgs");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+
+        out.println("<html>");
+        out.println("<head>");
+        out.println("<title>DVD Library Application: Error Page</title>");
+        out.println("</head>");
+        out.println("<body bgcolor='white'>");
+        out.println("<h2>Error Report</h2>");
+        out.println("<font color='red'>Please correct the following errors:");
+        out.println("<ul>");
+        errorMsgs.forEach(i->out.println("  <li>" + i + "</li>"));
+
+
+        out.println("</ul>");
+        out.println("Back up and try again.");
+        out.println("</font>");
+        out.println("</body>");
+        out.println("</html>");
+        out.close();
     }
 
     /**
