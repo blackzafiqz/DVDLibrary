@@ -1,0 +1,24 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>Add DVD</title>
+    </head>
+    <body>
+        <h1>Add DVD</h1>
+
+        <form name="Name Input Form" action="add_dvd.do" method="post">
+            Title : <input type="text" name="title" /> <br>
+            Year : <input type="text" name="year"/><br>
+            Genre : <select name="genre">
+                <option value="Sci-Fi">Sci-Fi</option>
+                <option value="Drama">Drama</option>
+                <option value="Comedy">Comedy</option>
+            </select>
+            or new genre: <input type="text" name="newGenre"/>
+            <input type="submit" value="OK" />
+        </form>
+    </body>
+</html>
+
