@@ -34,7 +34,7 @@ public class AddDVDFormServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
 
-            out.println("""
+            out.println(String.format("""
                         <!DOCTYPE html>
                         <html>
                             <head>
@@ -44,15 +44,23 @@ public class AddDVDFormServlet extends HttpServlet {
                             <body>
                                 <h1>Add DVD</h1>
                         
-                                <form name="Name Input Form" action="response.jsp">
-                                    Title : <input type="text" name="title" /> <br>
-                                    Year : <input type="text" name="year"/><br>
+                                <form name="Name Input Form" action="add_dvd.do" method="post">
+                                    Title : <input type="text" name="title" value="%s" /> <br>
+                                    Year : <input type="text" name="year" value="%s"/><br>
                                     Genre : <select name="genre">
-                                        """);
+                                        """,request.getParameter("title")== null ? "":request.getParameter("title")
+                                           ,request.getParameter("year")== null ? "":request.getParameter("year")));
 
             for (String i : genres) 
-                out.println(String.format("<option value='%s'>%s</option>", i, i));
-            
+            {
+                String genre = request.getParameter("genre");
+                
+                String selected= "";
+                if(genre!=null)
+                    if(i.equals(genre))
+                        selected = "selected";
+                out.println(String.format("<option value='%s' %s >%s</option>", i,selected, i));
+            }
             out.println("""
                                     </select>
                                     or new genre: <input type="text" name="newGenre"/>
@@ -94,7 +102,7 @@ public class AddDVDFormServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //processRequest(request, response);
-        var errorMsgs = (ArrayList) request.getAttribute("errorMsgs");
+        var errorMsgs = (LinkedList) request.getAttribute("errorMsgs");
         response.setContentType("text/html");
         PrintWriter out = response.getWriter();
 
