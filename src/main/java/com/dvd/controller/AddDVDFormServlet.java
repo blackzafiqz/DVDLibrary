@@ -61,15 +61,15 @@ public class AddDVDFormServlet extends HttpServlet {
                         selected = "selected";
                 out.println(String.format("<option value='%s' %s >%s</option>", i,selected, i));
             }
-            out.println("""
+            out.println(String.format("""
                                     </select>
-                                    or new genre: <input type="text" name="newGenre"/>
+                                    or new genre: <input type="text" name="newGenre" value="%s"/>
                                     <input type="submit" value="OK" />
                                 </form>
                             </body>
                         </html>
                         
-            """
+            """,request.getParameter("newGenre")== null ? "":request.getParameter("newGenre"))
             );
 
         }

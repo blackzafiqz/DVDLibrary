@@ -16,7 +16,7 @@
 
         <ul>
             <li><a href="list_library.view">Display my DVD library</a></li>
-            <li><a href="add_dvd.html">Add a DVD to my collection</a></li>
+            <li><a href="add_dvd.view">Add a DVD to my collection</a></li>
         </ul>
     </body>
 </html>
